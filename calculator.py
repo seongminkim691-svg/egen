@@ -1,4 +1,4 @@
-# 기본 계산기
+# 프리미엄 사용자를 위한 계산기
 def add(a, b):
 	return a+b
 
@@ -11,6 +11,7 @@ def multifly(a, b):
 def divide_new(a,b):
 	return a/b
 	
+#프리미엄 판에만 있는 평균값, 절댓값, 퍼센트, 팩토리얼 구하기
 def getMedian(a, b):
     return (a+b)/2
 
