@@ -7,7 +7,6 @@
 </a>
 
 - **박영민**
-<br>
 <!--github-->
 <a href="https://github.com/pyminno12" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
