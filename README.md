@@ -1,12 +1,11 @@
 # 수학 계산을 위한 코드를 제공하는 프로젝트
 ### 팀원 : 김성민, 박영민, 김성우, 김희선, 장한희
 
-- **김성민, 박영민, 김성우, 김희선, 장한희 깃허브 주소**
-<br/>
+- **김성민**
 <a href="https://github.com/seongminkim691-svg" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
-</a>
-&nbsp;
+</a><br/>
+- **박영민**
 <!--github-->
 <a href="https://github.com/pyminno12" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
