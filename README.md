@@ -1,10 +1,32 @@
 # 수학 계산을 위한 코드를 제공하는 프로젝트
-### 개발자 : Kim SeongMin
+### 팀원 : 김성민, 박영민, 김성우, 김희선, 장한희
 - **GitHub**
 <!--github-->
+-**김성민**
 <a href="https://github.com/seongminkim691-svg" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
 </a>
+&nbsp;
+<!--github-->
+<a href="https://github.com/pyminno12" target="_blank">
+<img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
+</a>
+&nbsp;
+<!--github-->
+<a href="https://github.com/hapa0151" target="_blank">
+<img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
+</a>
+&nbsp;
+<!--github-->
+<a href="https://github.com/huiseon097" target="_blank">
+<img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
+</a>
+&nbsp;
+<!--github-->
+<a href="https://github.com/hanhuijang588-star" target="_blank">
+<img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
+</a>
+
 
 ## 1. calculator.py : '계산기'에 있는 4칙연산 기능들을 제공하는 모듈
 - **소스코드**
