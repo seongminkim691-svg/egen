@@ -5,7 +5,7 @@
 <a href="https://github.com/seongminkim691-svg" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
 </a>
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 - **박영민**
 <!--github-->
 <a href="https://github.com/pyminno12" target="_blank">
