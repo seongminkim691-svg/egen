@@ -7,7 +7,7 @@
 ## 1. calculator.py : '계산기'에 있는 4칙연산 기능들을 제공하는 모듈
 - **소스코드**
   <br/>
-'''py
+```py
 import tkinter as tk
 
 def press_button(value):
@@ -87,7 +87,7 @@ tk.Button(
 ).grid(row=5, column=2, columnspan=2)
 
 root.mainloop()
-'''
+```
 
 ## 2. License : '라이센스'에 따라서 프리미엄 제품이냐 무료제공 제품인지 구분
 - **현 제품은 무료버전이므로 간단한 4칙연산만 가능**
