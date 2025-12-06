@@ -2,26 +2,30 @@
 ### 팀원 : 김성민, 박영민, 김성우, 김희선, 장한희
 
 - **김성민**
-<br>
 <a href="https://github.com/seongminkim691-svg" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
-</a><br/>
+</a>
+
 - **박영민**
+<br>
 <!--github-->
 <a href="https://github.com/pyminno12" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
 </a>
-&nbsp;
+
+- **김성우**
 <!--github-->
 <a href="https://github.com/hapa0151" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
 </a>
-&nbsp;
+
+- **김희선**
 <!--github-->
 <a href="https://github.com/huiseon097" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
 </a>
-&nbsp;
+
+- **장한희**
 <!--github-->
 <a href="https://github.com/hanhuijang588-star" target="_blank">
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
