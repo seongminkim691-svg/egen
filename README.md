@@ -30,6 +30,7 @@
 <img height="32" width="32" src="https://cdn.simpleicons.org/github/181717" />
 </a>
 
+
 ## 1. calculator.py : '공학 계산기' 기능들을 제공하는 모듈
 - **소스코드**
   <br/>
@@ -172,8 +173,11 @@ root.mainloop()
 ```
 
 ## 2. License : '라이센스'에 따라서 프리미엄 제품이냐 무료제공 제품인지 구분
-- **현 제품은 무료버전이므로 간단한 4칙연산만 가능**
-- **1년만 사용가능**
+- **현 제품은 프리미엄 제품으로 밑에 제시된 가격을 지불해야 이용가능**
+- **Ensterpise use : 50$ per month**
+- **Educational use : 10$ per month**
+- **personal use : 100$ per month**
+
 
 ## 3. READEME.md : 이 프로그램에 관한 설명
 
