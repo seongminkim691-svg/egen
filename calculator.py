@@ -1,4 +1,4 @@
-# 프리미엄 사용자들을 위한 공학용 계산기
+# 프리미엄 버전 공학용 계산기
 import tkinter as tk
 import math
 from fractions import Fraction
@@ -10,6 +10,11 @@ from fractions import Fraction
 # 안전한 eval 네임스페이스
 safe_names = {name: getattr(math, name) for name in dir(math) if not name.startswith("__")}
 safe_names.update({'pi': math.pi, 'e': math.e, 'Fraction': Fraction})
+
+# -----------------------------
+# 계산 기록 저장
+# -----------------------------
+history = []  # 최근 5개 기록 저장
 
 # -----------------------------
 # 계산 함수
@@ -35,9 +40,15 @@ def to_fraction():
 
 
 def calculate():
+    global history
     try:
         result = eval(entry_var.get(), {"__builtins__": None}, safe_names)
         entry_var.set(str(result))
+        # 계산 기록 저장
+        expr = v if (v := entry_var.get()) else ''
+        history.append(f"{expr} = {result}")
+        if len(history) > 5:
+            history.pop(0)
     except ZeroDivisionError:
         entry_var.set("0으로 나눌 수 없음")
     except:
@@ -175,6 +186,32 @@ for txt, r, c in science_buttons:
     else: cmd = lambda v=txt: press_button(v)
 
     styled_button(scientific_frame, txt, cmd, r, c, color="#2a2a2a")
+
+# -----------------------------
+# 기록 보기 버튼
+# -----------------------------
+
+def show_history():
+    hist_win = tk.Toplevel(root)
+    hist_win.title("계산 기록")
+    hist_win.geometry("350x250")
+    hist_win.configure(bg="#1e1e1e")
+
+    tk.Label(hist_win, text="최근 계산 5개", font=("Arial", 14), fg="white", bg="#1e1e1e").pack(pady=10)
+
+    if history:
+        for item in reversed(history):  # 최근 기록부터 표시
+            tk.Label(hist_win, text=item, fg="white", bg="#1e1e1e", font=("Arial", 12)).pack(anchor='w', padx=15)
+    else:
+        tk.Label(hist_win, text="기록 없음", fg="gray", bg="#1e1e1e", font=("Arial", 12)).pack(pady=20)
+
+# 기록 보기 버튼 추가
+history_button = tk.Button(
+    root, text="기록 보기", command=show_history,
+    bg="#3c3c3c", fg="white", font=("Arial", 12), height=2,
+    activebackground="#505050"
+)
+history_button.grid(row=1, column=4, columnspan=2, padx=10, sticky='e')
 
 # -----------------------------
 # 실행
