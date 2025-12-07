@@ -1,4 +1,4 @@
-# 프리미엄버전 공학 계산기
+# 프리미엄 버전 공학용 계산기
 import tkinter as tk
 import math
 from fractions import Fraction
