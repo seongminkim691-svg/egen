@@ -1,113 +1,134 @@
-# 기본 계산기 
-# 무료판에서는 더하기, 빼기, 곱하기, 나눗셈만 제공
+#프리미엄 사용자를 공학용 계산기 (UI개선버전)
 import tkinter as tk
+import math
 
-# -----------------------------
-# 버튼을 눌렀을 때 입력창에 값 추가
-# -----------------------------
-def press_button(value):
-    current = entry_var.get()
-    entry_var.set(current + value)
+# =============================
+# Modern Calculator + Scientific Mode + History
+# =============================
 
-# -----------------------------
-# C 버튼: 입력창 비우기
-# -----------------------------
-def clear():
-    entry_var.set("")
-
-# -----------------------------
-# = 버튼: 입력된 식 계산
-# -----------------------------
-def calculate():
-    expression = entry_var.get()
-
-    # 보안: 허용된 문자만 사용되었는지 확인
-    allowed_chars = "0123456789+-*/(). "
-    for ch in expression:
-        if ch not in allowed_chars:
-            entry_var.set("오류")
-            return
-
-    try:
-        # eval()을 사용하여 식 계산
-        result = str(eval(expression))
-        entry_var.set(result)
-    except ZeroDivisionError:
-        entry_var.set("0으로 나눌 수 없음")
-    except:
-        entry_var.set("오류")
-
-# -----------------------------
-# GUI 창 생성
-# -----------------------------
 root = tk.Tk()
-root.title("간단 계산기")
-
-entry_var = tk.StringVar()
-
-# -----------------------------
-# 계산식 입력창 (Entry)
-# -----------------------------
-entry = tk.Entry(
-    root,
-    textvariable=entry_var,
-    font=("Arial", 20),
-    bd=10,
-    relief="sunken",
-    justify="right"
-)
-entry.grid(row=0, column=0, columnspan=4, ipadx=10, ipady=10)
+root.title("Modern Calculator")
+root.geometry("370x720")  # 화면 크게 조정
+root.resizable(False, False)
+root.configure(bg="#1e1e1e")
 
 # -----------------------------
-# 숫자 및 연산 버튼 목록
-# + 버튼이 포함됨!
+# Display
 # -----------------------------
+display = tk.Entry(root, font=("Arial", 24), bd=0, bg="#000000", fg="#00ff9d",
+                    justify="right", insertbackground="white")
+display.pack(fill="x", ipady=18, pady=(20, 10), padx=20)
+
+# -----------------------------
+# History storage
+# -----------------------------
+history = []  # 최근 20개 저장
+
+# -----------------------------
+# Basic calculator functions
+# -----------------------------
+def input_value(v):
+    display.insert(tk.END, v)
+
+def clear_all():
+    display.delete(0, tk.END)
+
+def backspace():
+    current = display.get()
+    display.delete(len(current) - 1, tk.END)
+
+def calculate():
+    try:
+        exp = display.get().replace("^", "**")
+        result = eval(exp)
+
+        # 히스토리 저장
+        history.append(f"{exp} = {result}")
+        if len(history) > 20:
+            history.pop(0)
+
+        display.delete(0, tk.END)
+        display.insert(0, str(result))
+    except:
+        display.delete(0, tk.END)
+        display.insert(0, "Error")
+
+# -----------------------------
+# Scientific functions
+# -----------------------------
+def sci_function(func):
+    try:
+        value = float(display.get())
+        res = None
+
+        if func == "sqrt": res = math.sqrt(value)
+        elif func == "sin": res = math.sin(math.radians(value))
+        elif func == "cos": res = math.cos(math.radians(value))
+        elif func == "tan": res = math.tan(math.radians(value))
+        elif func == "log": res = math.log10(value)
+        elif func == "ln": res = math.log(value)
+        elif func == "exp": res = math.exp(value)
+        elif func == "square": res = value ** 2
+        elif func == "cube": res = value ** 3
+        elif func == "deg": res = math.degrees(value)
+        elif func == "rad": res = math.radians(value)
+        elif func == "fact": res = math.factorial(int(value))
+
+        display.delete(0, tk.END)
+        display.insert(0, str(res))
+    except:
+        display.delete(0, tk.END)
+        display.insert(0, "Error")
+
+# -----------------------------
+# History popup window
+# -----------------------------
+def show_history():
+    hist_win = tk.Toplevel(root)
+    hist_win.title("계산 기록 (최근 20개)")
+    hist_win.geometry("360x500")
+    hist_win.configure(bg="#1e1e1e")
+
+    tk.Label(hist_win, text="최근 계산 기록", bg="#1e1e1e", fg="white",
+             font=("Arial", 16)).pack(pady=10)
+
+    box = tk.Text(hist_win, bg="#000000", fg="#00ff9d", font=("Arial", 14), height=20)
+    box.pack(padx=15, pady=10, fill="both")
+
+    if not history:
+        box.insert(tk.END, "기록 없음")
+    else:
+        for h in reversed(history):  # 최신 순
+            box.insert(tk.END, h + "\n")
+
+# -----------------------------
+# Button styles
+# -----------------------------
+BTN = {"font": ("Arial", 16), "width": 5, "height": 2, "bd": 0,
+       "fg": "white", "bg": "#333333", "activebackground": "#444444"}
+OP = BTN.copy(); OP.update({"bg": "#ff9500", "activebackground": "#ffad33"})
+SCI = BTN.copy(); SCI.update({"bg": "#2a2a2a", "fg": "#00e6ff"})
+
+# -----------------------------
+# Buttons layout
+# -----------------------------
+frame = tk.Frame(root, bg="#1e1e1e")
+frame.pack(pady=5)
+
 buttons = [
-    ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
-    ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
-    ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
-    ('0', 4, 0), ('.', 4, 1), ('+', 4, 2), ('(', 4, 3),
-    (')', 5, 0)
+    [("C", clear_all, OP), ("⌫", backspace, OP), ("History", show_history, SCI), ("√", lambda: sci_function("sqrt"), SCI)],
+    [("sin", lambda: sci_function("sin"), SCI), ("cos", lambda: sci_function("cos"), SCI), ("tan", lambda: sci_function("tan"), SCI), ("/", lambda: input_value("/"), OP)],
+    [("log", lambda: sci_function("log"), SCI), ("ln", lambda: sci_function("ln"), SCI), ("exp", lambda: sci_function("exp"), SCI), ("*", lambda: input_value("*"), OP)],
+    [("7", lambda: input_value("7"), BTN), ("8", lambda: input_value("8"), BTN), ("9", lambda: input_value("9"), BTN), ("-", lambda: input_value("-"), OP)],
+    [("4", lambda: input_value("4"), BTN), ("5", lambda: input_value("5"), BTN), ("6", lambda: input_value("6"), BTN), ("+", lambda: input_value("+"), OP)],
+    [("1", lambda: input_value("1"), BTN), ("2", lambda: input_value("2"), BTN), ("3", lambda: input_value("3"), BTN), ("x²", lambda: sci_function("square"), SCI)],
+    [("0", lambda: input_value("0"), BTN), (".", lambda: input_value("."), BTN), ("=", calculate, OP), ("x³", lambda: sci_function("cube"), SCI)],
 ]
 
-# -----------------------------
-# 버튼 생성 반복
-# -----------------------------
-for (text, row, col) in buttons:
-    tk.Button(
-        root,
-        text=text,
-        width=5,
-        height=2,
-        font=("Arial", 18),
-        command=lambda val=text: press_button(val)
-    ).grid(row=row, column=col)
+# Button placement
+for r, row in enumerate(buttons):
+    for c, (txt, cmd, style) in enumerate(row):
+        tk.Button(frame, text=txt, command=cmd, **style).grid(
+            row=r, column=c, padx=6, pady=8)
 
-# -----------------------------
-# C(초기화 버튼)
-# -----------------------------
-tk.Button(
-    root,
-    text='C',
-    width=5,
-    height=2,
-    font=("Arial", 18),
-    command=clear
-).grid(row=5, column=1)
-
-# -----------------------------
-# = 버튼 (계산 실행)
-# -----------------------------
-tk.Button(
-    root,
-    text='=',
-    width=11,
-    height=2,
-    font=("Arial", 18),
-    command=calculate
-).grid(row=5, column=2, columnspan=2)
-
-# -----------------------------
-# GUI 루프 실행
-# -----------------------------
 root.mainloop()
